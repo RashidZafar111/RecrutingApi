@@ -67,16 +67,23 @@ namespace RecrutingApi.DataAccessLayer
         /// <returns></returns>
         public async Task<Users> GetUserDetails(string sessionKey)
         {
-            Users users = new Users();
-            var userDetails = _recrutingApiDBContext.users.Where(x => x.usrAuthKey == sessionKey).FirstOrDefault();
-            if (userDetails != null)
+            try
             {
-                users = _recrutingApiDBContext.users.Where(x => x.Id == userDetails.Id).FirstOrDefault();
-                return users;
+                Users users = new Users();
+                var userDetails = _recrutingApiDBContext.users.Where(x => x.usrAuthKey == sessionKey).FirstOrDefault();
+                if (userDetails != null)
+                {
+                    users = _recrutingApiDBContext.users.Where(x => x.Id == userDetails.Id).FirstOrDefault();
+                    return users;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return null;
+                throw;
             }
         }
 

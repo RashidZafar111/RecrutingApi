@@ -6,6 +6,10 @@ using System.Security.Cryptography;
 
 namespace RecrutingApi.Helper
 {
+    /// <summary>
+    /// Helper class is for common functions that we can use anywhere in the code by calling them
+    /// instead of creating them again
+    /// </summary>
     public class Helpers
     {
         private readonly RecrutingApiDBContext _recrutingApiDBContext;
@@ -19,6 +23,10 @@ namespace RecrutingApi.Helper
             _httpContext = httpContext;
         }
 
+        /// <summary>
+        /// Create random password for user to login
+        /// </summary>
+        /// <returns>String</returns>
         public string CreatePassword()
         {
             var randomGenerator = RandomNumberGenerator.Create();
@@ -27,6 +35,10 @@ namespace RecrutingApi.Helper
             return BitConverter.ToString(data).Replace("-", "");
         }
 
+        /// <summary>
+        /// Create Directory if not exists
+        /// </summary>
+        /// <param name="filePath"></param>
         public void CreateDirectory(string filePath)
         {
             if (!Directory.Exists(filePath))
@@ -35,6 +47,11 @@ namespace RecrutingApi.Helper
             }
         }
 
+        /// <summary>
+        /// Delete file
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
         public async Task DeleteFile(string filePath)
         {
             if (File.Exists(filePath))
@@ -43,11 +60,21 @@ namespace RecrutingApi.Helper
             }
         }
 
+        /// <summary>
+        /// Generating filename to savefile
+        /// </summary>
+        /// <returns>tring</returns>
         public string GetFileName()
         {
             return $"{DateTime.Now.ToString("yyyyMMddHHmmss")}.csv";
         }
 
+        /// <summary>
+        /// Upload file in the selected folder
+        /// </summary>
+        /// <param name="filepath"></param>
+        /// <param name="uploadedFile"></param>
+        /// <returns></returns>
         public async Task UploadFileAsync(string filepath, IFormFile uploadedFile)
         {
             using (var stream = new FileStream(filepath, FileMode.CreateNew))
@@ -105,6 +132,10 @@ namespace RecrutingApi.Helper
             }
         }
 
+        /// <summary>
+        /// Generating unique userId
+        /// </summary>
+        /// <returns>Int32</returns>
         public int GetNewUserId()
         {
             int newId = _recrutingApiDBContext.users.Count() == 0 ? 1 :
@@ -112,6 +143,10 @@ namespace RecrutingApi.Helper
             return newId;
         }
 
+        /// <summary>
+        /// Generating unique recruiterId
+        /// </summary>
+        /// <returns>Int32</returns>
         public int GetNewRecruiterId()
         {
             int newId = _recrutingApiDBContext.recruiters.Count() == 0 ? 1 :
@@ -119,6 +154,10 @@ namespace RecrutingApi.Helper
             return newId;
         }
 
+        /// <summary>
+        /// Generating unique candidateId
+        /// </summary>
+        /// <returns>Int32</returns>
         public int GetNewCandidateId()
         {
             int newId = _recrutingApiDBContext.candiates.Count() == 0 ? 1 :
@@ -126,6 +165,10 @@ namespace RecrutingApi.Helper
             return newId;
         }
 
+        /// <summary>
+        /// Generating unique documentId
+        /// </summary>
+        /// <returns>Int32</returns>
         public int GetNewDocumentId()
         {
             int newId = _recrutingApiDBContext.documents.Count() == 0 ? 1 :
@@ -133,12 +176,11 @@ namespace RecrutingApi.Helper
             return newId;
         }
 
-        public int getUserRole(string UserKey)
-        {
-            int newId = _recrutingApiDBContext.users.OrderBy(x => x.Id).FirstOrDefault().Id + 1;
-            return newId;
-        }
-
+        /// <summary>
+        /// Get Candidate data based on candidateId
+        /// </summary>
+        /// <param name="candidateId"></param>
+        /// <returns>Candidate</returns>
         public Candidate getCandidateData(int candidateId)
         {
             Candidate candidate = new Candidate();
@@ -146,6 +188,13 @@ namespace RecrutingApi.Helper
             return candidate;
         }
 
+        /// <summary>
+        /// Common funciton to bind response after request is successfull without any exception
+        /// </summary>
+        /// <param name="Message"></param>
+        /// <param name="responseData"></param>
+        /// <param name="isSuccess"></param>
+        /// <returns></returns>
         public ResponseResult bindResponseData(string Message, string responseData, bool isSuccess)
         {
             ResponseResult responseResult = new ResponseResult();

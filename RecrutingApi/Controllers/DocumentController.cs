@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NuGet.Protocol;
 using RecrutingApi.DataAccessLayer;
@@ -34,9 +35,20 @@ namespace RecrutingApi.Controllers
         [Route("document/uploadDocumentCandidate/")]
         public async Task<IActionResult> uploadDocumentCandidate(IFormFile uploadResume)
         {
-            ResponseResult responseResult = new ResponseResult();
-            responseResult = await _documentDAL.UploadFiles(uploadResume);
-            return Ok(responseResult.ToJson());
+            try
+            {
+                ResponseResult responseResult = new ResponseResult();
+                responseResult = await _documentDAL.UploadFiles(uploadResume);
+                return Ok(responseResult.ToJson());
+            }
+            catch (Exception ex)
+            {
+                return Problem(type: "Upload Document Candidate Error",
+              title: $"Document Upload",
+              detail: $"{ex.ToString()}",
+              statusCode: StatusCodes.Status500InternalServerError);
+            }
+           
         }
 
         /// <summary>
@@ -48,8 +60,18 @@ namespace RecrutingApi.Controllers
         [Authorize(Roles = "Recruiter")]
         public async Task<IActionResult> getAllDocumentListAsync()
         {
+            try
+            { 
             _responseResult = await _documentDAL.getAllDocumentList();
             return Ok(_responseResult.ToJson());
+            }
+            catch (Exception ex)
+            {
+                return Problem(type: "Get All Document List Error",
+              title: $"Document List",
+              detail: $"{ex.ToString()}",
+              statusCode: StatusCodes.Status500InternalServerError);
+            }
         }
 
         /// <summary>
@@ -63,9 +85,18 @@ namespace RecrutingApi.Controllers
         [Authorize(Roles = "Recruiter")]
         public async Task<IActionResult> editDocument(int documentId, IFormFile uploadCSV)
         {
+            try { 
             ResponseResult responseResult = new ResponseResult();
             var data = await _documentDAL.EditFiles(documentId, uploadCSV);
             return Ok(data.ToJson());
+            }
+            catch (Exception ex)
+            {
+                return Problem(type: "Edit Document Error",
+              title: $"Edit Document",
+              detail: $"{ex.ToString()}",
+              statusCode: StatusCodes.Status500InternalServerError);
+            }
         }
 
         /// <summary>
@@ -78,9 +109,19 @@ namespace RecrutingApi.Controllers
         [Authorize(Roles = "Recruiter")]
         public async Task<IActionResult> deleteDocument(int documentId)
         {
+            try
+            { 
             ResponseResult responseResult = new ResponseResult();
             var data = await _documentDAL.DeleteFiles(documentId);
             return Ok(data.ToJson());
+            }
+            catch (Exception ex)
+            {
+                return Problem(type: "Delete Document Error",
+              title: $"Delete Document",
+              detail: $"{ex.ToString()}",
+              statusCode: StatusCodes.Status500InternalServerError);
+            }
         }
 
         /// <summary>
@@ -92,8 +133,18 @@ namespace RecrutingApi.Controllers
         [Authorize(Roles = "Recruiter")]
         public async Task<IActionResult> createDocumentAsync()
         {
+            try
+            { 
             var data = await _documentDAL.createDocument();
             return Ok(data.ToJson());
         }
+            catch (Exception ex)
+            {
+                return Problem(type: "Create Document Error",
+              title: $"Create Document",
+        detail: $"{ex.ToString()}",
+              statusCode: StatusCodes.Status500InternalServerError);
+    }
+}
     }
 }

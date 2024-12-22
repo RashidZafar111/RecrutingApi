@@ -55,47 +55,55 @@ namespace RecrutingApi.DataAccessLayer
         /// <returns>ResponseResult</returns>
         public async Task<ResponseResult> UploadFiles(IFormFile uploadedFile)
         {
-            if (uploadedFile != null && uploadedFile.Length != 0)
+            try
             {
-                if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
+                if (uploadedFile != null && uploadedFile.Length != 0)
                 {
-                    string fileName = string.Empty;
-                    bool updtFileName = true;
-                    Candidate candidate = new Candidate();
-                    int candidateId = Convert.ToInt32(_httpContext.HttpContext.Session.GetString("UserId"));
-                    candidate = _helpers.getCandidateData(candidateId);
-
-                    if (candidate != null)
+                    if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
                     {
-                        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathCandidate"));
-                        _helpers.CreateDirectory(folderPath);
-                        fileName = candidate.resumefName != null ? $"{candidate.resumefName}" : _helpers.GetFileName();
-                        updtFileName = await _helpers.UpdateCandidateResumeInfo(candidateId, fileName);
-                        if (updtFileName)
+                        string fileName = string.Empty;
+                        bool updtFileName = true;
+                        Candidate candidate = new Candidate();
+                        int candidateId = Convert.ToInt32(_httpContext.HttpContext.Session.GetString("UserId"));
+                        candidate = _helpers.getCandidateData(candidateId);
+
+                        if (candidate != null)
                         {
-                            await _helpers.DeleteFile(folderPath + $"\\" + fileName);
-                            await _helpers.UploadFileAsync(folderPath + $"\\" + fileName, uploadedFile);
-                            return _helpers.bindResponseData("File Uploaded Successfully", "", true);
+                            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathCandidate"));
+                            _helpers.CreateDirectory(folderPath);
+                            fileName = candidate.resumefName != null ? $"{candidate.resumefName}" : _helpers.GetFileName();
+                            updtFileName = await _helpers.UpdateCandidateResumeInfo(candidateId, fileName);
+                            if (updtFileName)
+                            {
+                                await _helpers.DeleteFile(folderPath + $"\\" + fileName);
+                                await _helpers.UploadFileAsync(folderPath + $"\\" + fileName, uploadedFile);
+                                return _helpers.bindResponseData("File Uploaded Successfully", "", true);
+                            }
+                            else
+                            {
+                                return _helpers.bindResponseData("Error Uploading File", "", true);
+                            }
                         }
                         else
                         {
-                            return _helpers.bindResponseData("Error Uploading File", "", true);
+                            return _helpers.bindResponseData("No Record Found", "", true);
                         }
                     }
                     else
                     {
-                        return _helpers.bindResponseData("No Record Found", "", true);
+                        return _helpers.bindResponseData("Only CSV File Allowed", "", true);
                     }
                 }
                 else
                 {
-                    return _helpers.bindResponseData("Only CSV File Allowed", "", true);
+                    return _helpers.bindResponseData("No File Found", "", true);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return _helpers.bindResponseData("No File Found", "", true);
+                throw; 
             }
+
         }
 
         /// <summary>
@@ -106,37 +114,44 @@ namespace RecrutingApi.DataAccessLayer
         /// <returns></returns>
         public async Task<ResponseResult> EditFiles(int documentId, IFormFile uploadedFile)
         {
-            if (uploadedFile != null && uploadedFile.Length != 0)
+            try
             {
-                if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
+                if (uploadedFile != null && uploadedFile.Length != 0)
                 {
-                    Document document = new Document();
-                    string filePath = string.Empty;
-                    string fileName = string.Empty;
-                    document = _recrutingApiDBContext.documents.Where(x => x.Id == documentId).FirstOrDefault();
-                    if (document != null)
+                    if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
                     {
-                        var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathRecruiter"));
-                        _helpers.CreateDirectory(folderPath);
-                        fileName = document.fileName != null ? $"\\{document.fileName}" : _helpers.GetFileName();
-                        await _helpers.DeleteFile(folderPath + fileName);
-                        await _helpers.UploadFileAsync(folderPath + fileName, uploadedFile);
+                        Document document = new Document();
+                        string filePath = string.Empty;
+                        string fileName = string.Empty;
+                        document = _recrutingApiDBContext.documents.Where(x => x.Id == documentId).FirstOrDefault();
+                        if (document != null)
+                        {
+                            var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathRecruiter"));
+                            _helpers.CreateDirectory(folderPath);
+                            fileName = document.fileName != null ? $"\\{document.fileName}" : _helpers.GetFileName();
+                            await _helpers.DeleteFile(folderPath + fileName);
+                            await _helpers.UploadFileAsync(folderPath + fileName, uploadedFile);
 
-                        return _helpers.bindResponseData("File Edited Successfully", "", true);
+                            return _helpers.bindResponseData("File Edited Successfully", "", true);
+                        }
+                        else
+                        {
+                            return _helpers.bindResponseData("No Record Found", "", true);
+                        }
                     }
                     else
                     {
-                        return _helpers.bindResponseData("No Record Found", "", true);
+                        return _helpers.bindResponseData("Only CSV File Allowed", "", true);
                     }
                 }
                 else
                 {
-                    return _helpers.bindResponseData("Only CSV File Allowed", "", true);
+                    return _helpers.bindResponseData("No File Found", "", true);
                 }
             }
-            else
+            catch(Exception ex)
             {
-                return _helpers.bindResponseData("No File Found", "", true);
+                throw;
             }
         }
 
@@ -147,16 +162,23 @@ namespace RecrutingApi.DataAccessLayer
         /// <returns></returns>
         public async Task<ResponseResult> DeleteCandidateResume(string fileName)
         {
-            if (fileName != null)
+            try
             {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathCandidate"));
-                var filePath = folderPath + $"\\{fileName}";
-                await _helpers.DeleteFile(filePath);
-                return _helpers.bindResponseData("File Deleted Successfully", "", true);
+                if (fileName != null)
+                {
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathCandidate"));
+                    var filePath = folderPath + $"\\{fileName}";
+                    await _helpers.DeleteFile(filePath);
+                    return _helpers.bindResponseData("File Deleted Successfully", "", true);
+                }
+                else
+                {
+                    return _helpers.bindResponseData("No Record Found", "", true);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return _helpers.bindResponseData("No Record Found", "", true);
+                throw;
             }
         }
 
@@ -167,18 +189,25 @@ namespace RecrutingApi.DataAccessLayer
         /// <returns></returns>
         public async Task<ResponseResult> DeleteFiles(int documentId)
         {
-            Document document = new Document();
-            document = _recrutingApiDBContext.documents.Where(x => x.Id == documentId).FirstOrDefault();
-            if (document != null)
+            try
             {
-                var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathRecruiter"));
-                var filePath = folderPath + $"\\{document.fileName}";
-                await _helpers.DeleteFile(filePath);
-                return _helpers.bindResponseData("File Deleted Successfully", "", true);
+                Document document = new Document();
+                document = _recrutingApiDBContext.documents.Where(x => x.Id == documentId).FirstOrDefault();
+                if (document != null)
+                {
+                    var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathRecruiter"));
+                    var filePath = folderPath + $"\\{document.fileName}";
+                    await _helpers.DeleteFile(filePath);
+                    return _helpers.bindResponseData("File Deleted Successfully", "", true);
+                }
+                else
+                {
+                    return _helpers.bindResponseData("No Record Found", "", true);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                return _helpers.bindResponseData("No Record Found", "", true);
+                throw;
             }
         }
 
