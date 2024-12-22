@@ -1,0 +1,185 @@
+{
+	"info": {
+		"_postman_id": "1bd3f83e-a15d-4c93-8ab1-8d3b4c6756ed",
+		"name": "Document",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28775142"
+	},
+	"item": [
+		{
+			"name": "Get All Documents List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/document/getAllDocumentList",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"document",
+						"getAllDocumentList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Document Data By Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/document/getDocumentDatabyId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"document",
+						"getDocumentDatabyId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Document",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "23bd6bd0-e781-46ff-98e0-6e3526843539",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uploadCSV",
+							"type": "file",
+							"src": "/C:/Users/Personal/Desktop/OML-COre-IOS.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7260/document/editDocument/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"document",
+						"editDocument",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Document",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Api-key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "23bd6bd0-e781-46ff-98e0-6e3526843539",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/document/deleteDocument/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"document",
+						"deleteDocument",
+						"1"
+					],
+					"query": [
+						{
+							"key": "Api-key",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Candidate Upload/ReUpload Resume",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Api-key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "cc71e2fc-6b40-4450-accc-33d68b2d7994",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uploadResume",
+							"type": "file",
+							"src": "/C:/Users/Personal/Desktop/OML-COre-IOS.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7260/document/uploadDocumentCandidate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"document",
+						"uploadDocumentCandidate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
