@@ -1,0 +1,9 @@
+﻿namespace RecrutingApi.Model
+{
+    public class ResponseResult
+    {
+        public string message { get; set; }
+        public string responsedata { get; set; }
+        public bool isSuccess { get; set; }
+    }
+}
