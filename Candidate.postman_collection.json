@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "89994a69-ca78-448e-9471-554d77c89e9f",
+		"name": "Candidate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28775142"
+	},
+	"item": [
+		{
+			"name": "Get All Candidate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "fe4eabe6-47a9-4b15-adea-b77443331344",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/candidate/getAllcandidate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"getAllcandidate"
+					],
+					"query": [
+						{
+							"key": "Api-Key",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Candidate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "6a785514-1cb5-4372-bd20-44e2f15a5aa5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"firstName\": \"Test3\",\r\n  \"middleName\": \"\",\r\n  \"lastName\": \"Candidate3\",\r\n  \"emailAddress\": \"tcandidate3@example.com\",\r\n  \"mobileNumber\": \"+62548879200\",\r\n  \"country\": \"MY\",\r\n  \"city\": \"KL\",\r\n  \"postCode\": \"45878\",\r\n  \"minSalary\": 5000,\r\n  \"maxSalary\": 80000,\r\n  \"title\": \"Senior Android Developer\",\r\n  \"description\": \"Working as a Android Developer\",\r\n  \"hightestEducation\": \"MS IT\",\r\n  \"professionalCertificate\": \"Many\",\r\n   \"recordCreateDateTime\":\"2024-12-21T11:23:12.8138624Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7260/Candidate/insertCandidate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"Candidate",
+						"insertCandidate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Candidate by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "6a785514-1cb5-4372-bd20-44e2f15a5aa5",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/candidate/getCandidatebyId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"getCandidatebyId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Candidate By Id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "6a785514-1cb5-4372-bd20-44e2f15a5aa5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\": 1,\r\n    \"firstName\": \"Tsest11\",\r\n    \"middleName\": \"\",\r\n    \"lastName\": \"Csandidate11\",\r\n    \"emailAddress\": \"tcandidate1@example.com\",\r\n    \"mobileNumber\": \"+62548879200\",\r\n    \"country\": \"MY\",\r\n    \"city\": \"KL\",\r\n    \"postCode\": \"45878\",\r\n    \"minSalary\": 5000,\r\n    \"maxSalary\": 80000,\r\n    \"title\": \"Senior Android Developer\",\r\n    \"description\": \"Working as a Android Developer\",\r\n    \"hightestEducation\": \"MS IT\",\r\n    \"professionalCertificate\": \"Many\",\r\n    \"recordCreateDateTime\": \"2024-12-22T11:16:07.2674216Z\",\r\n    \"recordUpdateDateTime\": \"2024-12-22T11:23:07.7280866Z\",\r\n    \"resumefName\": \"20241222194541.csv\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7260/candidate/updateCandidate/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"updateCandidate",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Candidate By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "6a785514-1cb5-4372-bd20-44e2f15a5aa5",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/candidate/deleteCandidatebyId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"deleteCandidatebyId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Candidate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "38da01e7-06ac-4c3b-8d97-20a544b9b411",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/candidate/getAllcandidate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"getAllcandidate"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

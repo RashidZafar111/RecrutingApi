@@ -1,0 +1,593 @@
+{
+	"info": {
+		"_postman_id": "1bd3f83e-a15d-4c93-8ab1-8d3b4c6756ed",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28775142"
+	},
+	"item": [
+		{
+			"name": "Candidate Upload/ReUpload Resume",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Api-key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "7bd849b5-f3ce-4032-a94a-2906d27e7441",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "uploadedFile",
+							"type": "file",
+							"src": "/C:/Users/Personal/Desktop/OML-COre-IOS.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://localhost:7260/Candiate/uploadresume",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"Candiate",
+						"uploadresume"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetAllUsers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/Users/getUsers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"Users",
+						"getUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"emailAddress\": \"testUser@example.com\",\r\n  \"password\": \"4A851F832BA7B090211AC0FF42B28613\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7260/authenticate/authenticateUser",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"authenticate",
+						"authenticateUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllDocments",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/document/getDocuments",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"document",
+						"getDocuments"
+					],
+					"query": [
+						{
+							"key": "Api-key",
+							"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Candidate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/Candiate/getAllCandidate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"Candiate",
+						"getAllCandidate"
+					],
+					"query": [
+						{
+							"key": "Api-Key",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users List",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/Users/getUsers",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"Users",
+						"getUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Recruiter",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "dd394307-4bee-4c33-b3c3-8757900ea051",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/recruiter/getAllRecruiter",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"recruiter",
+						"getAllRecruiter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recruiter By Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "dd394307-4bee-4c33-b3c3-8757900ea051",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/recruiter/getRecruiterbyId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"recruiter",
+						"getRecruiterbyId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Recruiter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "ValidationKey",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 10,\r\n  \"firstName\": \"test\",\r\n  \"middleName\": \"\",\r\n  \"lastName\": \"user\",\r\n  \"emailAddress\": \"testUser@example.com\",\r\n  \"mobileNumber\": \"+60125487998\",\r\n  \"country\": \"Malaysia\",\r\n  \"city\": \"KL\",\r\n  \"postcode\": \"46000\",\r\n  \"title\": \"Senior Manager IT Services\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7260/recruiter/insertRecruiter",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"recruiter",
+						"insertRecruiter"
+					],
+					"query": [
+						{
+							"key": "Id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Recruiter By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "dd394307-4bee-4c33-b3c3-8757900ea051",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/recruiter/deleteRecruiterbyId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"recruiter",
+						"deleteRecruiterbyId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recruiter",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "dd394307-4bee-4c33-b3c3-8757900ea051",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Id\": 1,\r\n    \"firstName\": \"test1\",\r\n    \"middleName\": \"\",\r\n    \"lastName\": \"user1\",\r\n    \"emailAddress\": \"testUser@example.com\",\r\n    \"mobileNumber\": \"+60125487998\",\r\n    \"country\": \"Malaysia\",\r\n    \"city\": \"KL\",\r\n    \"postcode\": \"46000\",\r\n    \"title\": \"Senior Manager IT\",\r\n    \"recordCreateDateTime\":\"2024-12-21T11:23:12.8138624Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7260/recruiter/updateRecruiter/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"recruiter",
+						"updateRecruiter",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Candidate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "38da01e7-06ac-4c3b-8d97-20a544b9b411",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"firstName\": \"Test\",\r\n  \"middleName\": \"\",\r\n  \"lastName\": \"Candidate\",\r\n  \"emailAddress\": \"tcandidate@example.com\",\r\n  \"mobileNumber\": \"+62548879200\",\r\n  \"country\": \"MY\",\r\n  \"city\": \"KL\",\r\n  \"postcode\": \"45878\",\r\n  \"minSalary\": 5000,\r\n  \"maxSalary\": 80000,\r\n  \"title\": \"Senior Android Developer\",\r\n  \"description\": \"Working as a Android Developer\",\r\n  \"hightestEducation\": \"MS IT\",\r\n  \"professionalCertificate\": \"Many\",\r\n   \"recordCreateDateTime\":\"2024-12-21T11:23:12.8138624Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7260/Candidate/insertCandidate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"Candidate",
+						"insertCandidate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Candidate",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "38da01e7-06ac-4c3b-8d97-20a544b9b411",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/candidate/getAllcandidate",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"getAllcandidate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Candidate by Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "f431ee9d-7a9c-4bf2-b2ab-55652c0e73f5",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/candidate/getCandidatebyId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"getCandidatebyId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Candidate By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "f431ee9d-7a9c-4bf2-b2ab-55652c0e73f5",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/candidate/deleteCandidatebyId/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"deleteCandidatebyId",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Candidate By Id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					},
+					{
+						"key": "User-Valid-Key",
+						"value": "f431ee9d-7a9c-4bf2-b2ab-55652c0e73f5",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"firstName\": \"Test1\",\r\n  \"middleName\": \"\",\r\n  \"lastName\": \"Candidate1\",\r\n  \"emailAddress\": \"tcandidate@example.com\",\r\n  \"mobileNumber\": \"+625488792010\",\r\n  \"country\": \"MY\",\r\n  \"city\": \"KL\",\r\n  \"postcode\": \"458718\",\r\n  \"minSalary\": 5000,\r\n  \"maxSalary\": 80000,\r\n  \"title\": \"Senior Android Developer\",\r\n  \"description\": \"Working as a Android Developer\",\r\n  \"hightestEducation\": \"MS IT\",\r\n  \"professionalCertificate\": \"Many\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7260/candidate/updateCandidate/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"candidate",
+						"updateCandidate",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recruiter Create Document",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Api-Key",
+						"value": "08BxzdYdEgNCrRhMbCpkBF7e4d4Kib46dwL9ZE5egiL0iL5Y3dzREUBSUYVUwEcX",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7260/document/createDocument",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7260",
+					"path": [
+						"document",
+						"createDocument"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
