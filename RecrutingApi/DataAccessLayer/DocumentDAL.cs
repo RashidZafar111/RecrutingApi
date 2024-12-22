@@ -55,17 +55,17 @@ namespace RecrutingApi.DataAccessLayer
         /// <returns>ResponseResult</returns>
         public async Task<ResponseResult> UploadFiles(IFormFile uploadedFile)
         {
-            if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
+            if (uploadedFile != null && uploadedFile.Length != 0)
             {
-                string fileName = string.Empty;
-                bool updtFileName = true;
-                Candidate candidate = new Candidate();
-                int candidateId = Convert.ToInt32(_httpContext.HttpContext.Session.GetString("UserId"));
-                candidate = _helpers.getCandidateData(candidateId);
-
-                if (candidate != null)
+                if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
                 {
-                    if (uploadedFile != null && uploadedFile.Length != 0)
+                    string fileName = string.Empty;
+                    bool updtFileName = true;
+                    Candidate candidate = new Candidate();
+                    int candidateId = Convert.ToInt32(_httpContext.HttpContext.Session.GetString("UserId"));
+                    candidate = _helpers.getCandidateData(candidateId);
+
+                    if (candidate != null)
                     {
                         var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathCandidate"));
                         _helpers.CreateDirectory(folderPath);
@@ -84,17 +84,17 @@ namespace RecrutingApi.DataAccessLayer
                     }
                     else
                     {
-                        return _helpers.bindResponseData("No File Found", "", true);
+                        return _helpers.bindResponseData("No Record Found", "", true);
                     }
                 }
                 else
                 {
-                    return _helpers.bindResponseData("No Record Found", "", true);
+                    return _helpers.bindResponseData("Only CSV File Allowed", "", true);
                 }
             }
             else
             {
-                return _helpers.bindResponseData("Only CSV File Allowed", "", true);
+                return _helpers.bindResponseData("No File Found", "", true);
             }
         }
 
@@ -106,15 +106,15 @@ namespace RecrutingApi.DataAccessLayer
         /// <returns></returns>
         public async Task<ResponseResult> EditFiles(int documentId, IFormFile uploadedFile)
         {
-            if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
+            if (uploadedFile != null && uploadedFile.Length != 0)
             {
-                Document document = new Document();
-                string filePath = string.Empty;
-                string fileName = string.Empty;
-                document = _recrutingApiDBContext.documents.Where(x => x.Id == documentId).FirstOrDefault();
-                if (document != null)
+                if (uploadedFile.ContentType.ToLower().Contains("text/csv"))
                 {
-                    if (uploadedFile != null && uploadedFile.Length != 0)
+                    Document document = new Document();
+                    string filePath = string.Empty;
+                    string fileName = string.Empty;
+                    document = _recrutingApiDBContext.documents.Where(x => x.Id == documentId).FirstOrDefault();
+                    if (document != null)
                     {
                         var folderPath = Path.Combine(Directory.GetCurrentDirectory(), _configuration.GetValue<string>("UploadFilePathRecruiter"));
                         _helpers.CreateDirectory(folderPath);
@@ -126,17 +126,17 @@ namespace RecrutingApi.DataAccessLayer
                     }
                     else
                     {
-                        return _helpers.bindResponseData("No File Found", "", true);
+                        return _helpers.bindResponseData("No Record Found", "", true);
                     }
                 }
                 else
                 {
-                    return _helpers.bindResponseData("No Record Found", "", true);
+                    return _helpers.bindResponseData("Only CSV File Allowed", "", true);
                 }
             }
             else
             {
-                return _helpers.bindResponseData("Only CSV File Allowed", "", true);
+                return _helpers.bindResponseData("No File Found", "", true);
             }
         }
 

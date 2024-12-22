@@ -10,6 +10,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionsItems", "Solutions
 		changeLog.md = changeLog.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PostmanTestFiles", "PostmanTestFiles", "{8C823F07-97DF-48C9-9D80-AE118232F7DB}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\Candidate.postman_collection.json = ..\..\..\Desktop\Candidate.postman_collection.json
+		..\..\..\Desktop\Document.postman_collection.json = ..\..\..\Desktop\Document.postman_collection.json
+		..\..\..\Desktop\General.postman_collection.json = ..\..\..\Desktop\General.postman_collection.json
+		..\..\..\Desktop\Recruiter.postman_collection.json = ..\..\..\Desktop\Recruiter.postman_collection.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
