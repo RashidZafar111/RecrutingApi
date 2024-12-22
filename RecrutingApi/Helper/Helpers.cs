@@ -77,9 +77,16 @@ namespace RecrutingApi.Helper
         /// <returns></returns>
         public async Task UploadFileAsync(string filepath, IFormFile uploadedFile)
         {
-            using (var stream = new FileStream(filepath, FileMode.CreateNew))
+            try
             {
-                await uploadedFile.CopyToAsync(stream);
+                using (var stream = new FileStream(filepath, FileMode.CreateNew))
+                {
+                    await uploadedFile.CopyToAsync(stream);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
@@ -90,20 +97,27 @@ namespace RecrutingApi.Helper
         /// <returns>N/A</returns>
         public async Task CreateCSVFileAsync(string folderPath, string fileName, List<Candidate> candidate)
         {
-            using (var writer = new StreamWriter(folderPath + fileName))
+            try
             {
-                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                using (var writer = new StreamWriter(folderPath + fileName))
                 {
-                    csv.WriteRecordsAsync(candidate);
+                    using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                    {
+                        csv.WriteRecordsAsync(candidate);
+                    }
                 }
+                Document document = new Document();
+                document.fileName = fileName;
+                document.uId = Convert.ToInt32(_httpContext.HttpContext.Session.GetString("UserId"));
+                document.Id = GetNewDocumentId();
+                document.CreateDateTime = DateTime.Now;
+                await _recrutingApiDBContext.documents.AddAsync(document);
+                await _recrutingApiDBContext.SaveChangesAsync();
             }
-            Document document = new Document();
-            document.fileName = fileName;
-            document.uId = Convert.ToInt32(_httpContext.HttpContext.Session.GetString("UserId"));
-            document.Id = GetNewDocumentId();
-            document.CreateDateTime = DateTime.Now;
-            await _recrutingApiDBContext.documents.AddAsync(document);
-            await _recrutingApiDBContext.SaveChangesAsync();
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         /// <summary>
