@@ -76,7 +76,7 @@ namespace RecrutingApi.DataAccessLayer
                     _candidate.mobileNumber = candidate.mobileNumber;
                     _candidate.city = candidate.city;
                     _candidate.country = candidate.country;
-                    _candidate.postcode = candidate.postcode;
+                    _candidate.postCode = candidate.postCode;
                     _candidate.minSalary = candidate.minSalary;
                     _candidate.maxSalary = candidate.maxSalary;
                     _candidate.title = candidate.title;

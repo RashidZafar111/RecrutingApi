@@ -88,7 +88,7 @@ namespace RecrutingApi.DataAccessLayer
                     _recruiter.title = recruiter.title;
                     _recruiter.city = recruiter.city;
                     _recruiter.country = recruiter.country;
-                    _recruiter.postcode = recruiter.postcode;
+                    _recruiter.postCode = recruiter.postCode;
                     _recruiter.recordCreateDateTime = recruiter.recordCreateDateTime;
                     _recruiter.recordUpdateDateTime = DateTime.Now;
                     await _recrutingApiDBContext.SaveChangesAsync();

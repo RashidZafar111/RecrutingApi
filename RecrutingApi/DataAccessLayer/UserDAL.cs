@@ -19,6 +19,8 @@ namespace RecrutingApi.DataAccessLayer
         }
 
         /// <summary>
+        /// Validate user credentials and returning authentication key to validate user roles in
+        /// other operations
         /// </summary>
         /// <param name="authentciate"></param>
         /// <returns></returns>
@@ -36,16 +38,16 @@ namespace RecrutingApi.DataAccessLayer
                     if (DateTime.Now > users.keyExpireTime)
                     {
                         users.keyExpireTime = DateTime.Now.AddDays(5);
-                        users.uAuthKey = Guid.NewGuid().ToString();
+                        users.usrAuthKey = Guid.NewGuid().ToString();
                         _recrutingApiDBContext.SaveChanges();
                     }
                     else
                     {
                         users.keyExpireTime = DateTime.Now.AddDays(5);
-                        users.uAuthKey = Guid.NewGuid().ToString();
+                        users.usrAuthKey = Guid.NewGuid().ToString();
                         _recrutingApiDBContext.SaveChanges();
                     }
-                    return _helpers.bindResponseData("Authentication Successful", $"SessionAuthKey : {users.uAuthKey}", true);
+                    return _helpers.bindResponseData("Authentication Successful", $"SessionAuthKey : {users.usrAuthKey}", true);
                 }
                 else
                 {
@@ -58,10 +60,15 @@ namespace RecrutingApi.DataAccessLayer
             }
         }
 
+        /// <summary>
+        /// Passing user details to other methods
+        /// </summary>
+        /// <param name="sessionKey"></param>
+        /// <returns></returns>
         public async Task<Users> GetUserDetails(string sessionKey)
         {
             Users users = new Users();
-            var userDetails = _recrutingApiDBContext.users.Where(x => x.uAuthKey == sessionKey).FirstOrDefault();
+            var userDetails = _recrutingApiDBContext.users.Where(x => x.usrAuthKey == sessionKey).FirstOrDefault();
             if (userDetails != null)
             {
                 users = _recrutingApiDBContext.users.Where(x => x.Id == userDetails.Id).FirstOrDefault();
@@ -73,14 +80,8 @@ namespace RecrutingApi.DataAccessLayer
             }
         }
 
-        public async Task<List<Users>> getAllUsers()
-        {
-            List<Users> users = new List<Users>();
-            users = _recrutingApiDBContext.users.ToList();
-            return users;
-        }
-
         /// <summary>
+        /// creating users for the purpose of loging
         /// </summary>
         /// <param name="emailAddress"></param>
         /// <param name="roles"></param>

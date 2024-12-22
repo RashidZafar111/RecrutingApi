@@ -150,7 +150,7 @@ namespace RecrutingApi.Helper
         {
             ResponseResult responseResult = new ResponseResult();
             responseResult.message = Message;
-            responseResult.responsedata = responseData;
+            responseResult.responseData = responseData;
             responseResult.isSuccess = isSuccess;
             return responseResult;
         }

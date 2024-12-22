@@ -37,7 +37,7 @@ namespace RecrutingApi.Model
 
         [Required]
         [StringLength(10, ErrorMessage = "the length should not be more then 10")]
-        public string postcode { get; set; }
+        public string postCode { get; set; }
 
         [Required]
         public int minSalary { get; set; }

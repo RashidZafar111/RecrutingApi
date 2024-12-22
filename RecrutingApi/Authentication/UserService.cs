@@ -33,7 +33,7 @@ namespace RecrutingApi.Authentication
             try
             {
                 Users users = new Users();
-                var userDetails = _recrutingApiDBContext.users.Where(x => x.uAuthKey == UserKey).FirstOrDefault();
+                var userDetails = _recrutingApiDBContext.users.Where(x => x.usrAuthKey == UserKey).FirstOrDefault();
                 if (userDetails != null)
                 {
                     users = _recrutingApiDBContext.users.Where(x => x.Id == userDetails.Id).FirstOrDefault();

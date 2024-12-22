@@ -24,7 +24,7 @@ namespace RecrutingApi.Model
         [Required]
         public role roles { get; set; }
 
-        public string? uAuthKey { get; set; }
+        public string? usrAuthKey { get; set; }
 
         public DateTime? keyExpireTime { get; set; }
     }
